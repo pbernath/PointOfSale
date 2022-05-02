@@ -12,8 +12,8 @@ public class InventorySystemHandler {
         String itemName;
         String itemDescription;
         String itemCategory;
-        int price;
-        int taxRate;
+        double price;
+        double taxRate;
         boolean validity;
         
         // call to database to fetch info
@@ -22,7 +22,7 @@ public class InventorySystemHandler {
         itemDescription = "Description of item";
         itemCategory = "one of a number of categories";
         price = 80;
-        taxRate = 25;
+        taxRate = 0.25;
         validity = true;
         
         return new ItemDTO(itemID, itemName, itemDescription, itemCategory, price, taxRate, validity);

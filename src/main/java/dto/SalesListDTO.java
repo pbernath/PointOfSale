@@ -7,18 +7,24 @@ import model.ListItem;
 
 public class SalesListDTO {
     private final List<ListItem> theItemList;
-    private final int totalPrice;
+    private final double totalPrice;
+    private final double totalTax;
     
-    public SalesListDTO (List<ListItem> theItemList, int totalPrice) {
+    public SalesListDTO (List<ListItem> theItemList, double totalPrice, double totalTax) {
         this.theItemList = theItemList;
         this.totalPrice = totalPrice;
+        this.totalTax = totalTax;
     }
     
     public List<ListItem> getTheItemList () {
         return theItemList;
     }
     
-    public int getTotalPrice () {
+    public double getTotalPrice () {
         return totalPrice;
+    }
+    
+    public double getTotalTax () {
+        return totalTax;
     }
 }

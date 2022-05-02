@@ -8,12 +8,12 @@ public class ItemDTO {
     private final String itemName;
     private final String itemDescription;
     private final String itemCategory;
-    private final int price;
-    private final int taxRate;
+    private final double price;
+    private final double taxRate;
     private final boolean validity;
     
     
-    public ItemDTO (int itemID, String itemName, String itemDescription, String itemCategory, int price, int taxRate, boolean validity) {
+    public ItemDTO (int itemID, String itemName, String itemDescription, String itemCategory, double price, double taxRate, boolean validity) {
         this.itemID = itemID;
         this.itemName = itemName;
         this.itemDescription = itemDescription;
@@ -39,11 +39,11 @@ public class ItemDTO {
         return itemCategory;
     }
     
-    public int getPrice () {
+    public double getPrice () {
         return price;
     }
     
-    public int getTaxRate () {
+    public double getTaxRate () {
         return taxRate;
     }
     

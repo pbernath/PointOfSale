@@ -2,6 +2,7 @@
 package view;
 
 import controller.Controller;
+import dto.SaleLogDTO;
 
 
 public class View {
@@ -22,5 +23,9 @@ public class View {
         
         controller.endSale();
         System.out.println("The current sale is ending");
+        
+        int anAmountPaid = 1000;
+        SaleLogDTO theLog = controller.processSale(anAmountPaid);
+        System.out.println("Sale is processed, customer paid " + anAmountPaid + " for " + theLog.getTheFinalList().size() + " items, and got a change of " + theLog.getChange());
     }
 }

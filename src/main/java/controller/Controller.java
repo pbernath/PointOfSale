@@ -11,6 +11,7 @@ import integration.InventorySystemHandler;
 import integration.PrinterHandler;
 import model.SalesList;
 import dto.ItemDTO;
+import dto.SaleLogDTO;
 import dto.SalesListDTO;
 import model.Sale;
 
@@ -47,5 +48,9 @@ public class Controller {
     
     public void endSale () {
         this.sale = new Sale(salesList);
+    }
+    
+    public SaleLogDTO processSale (int amountPaid) {
+        return sale.processSale(amountPaid, accountingSystemHandler, inventorySystemHandler, printerHandler);
     }
 }
