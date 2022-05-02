@@ -2,12 +2,17 @@
 package controller;
 
 
+
 import integration.HandlerCreator;
 import integration.AccountingSystemHandler;
 import integration.CustomerDatabaseHandler;
 import integration.DiscountDatabaseHandler;
 import integration.InventorySystemHandler;
 import integration.PrinterHandler;
+import model.SalesList;
+import dto.ItemDTO;
+import dto.SalesListDTO;
+import model.Sale;
 
 
 public class Controller {
@@ -17,6 +22,8 @@ public class Controller {
     private final DiscountDatabaseHandler discountDatabseHandler;
     private final InventorySystemHandler inventorySystemHandler;
     private final PrinterHandler printerHandler;
+    private SalesList salesList;
+    private Sale sale;
     
     public Controller (HandlerCreator handlerCreator) {
         this.handlerCreator = handlerCreator;
@@ -25,6 +32,20 @@ public class Controller {
         this.discountDatabseHandler = handlerCreator.getDiscountDatabaseHandler();
         this.inventorySystemHandler = handlerCreator.getInventorySystemHandler();
         this.printerHandler = handlerCreator.getPrinterHandler();
+    }
+    
+    public void startSale () {
+        this.salesList = new SalesList();
+    }
+    
+    public SalesListDTO scanItem (int itemID, int quantity) {
+        ItemDTO itemDTO = inventorySystemHandler.getItem(itemID);
         
+        return salesList.addItem(itemDTO, quantity);
+        
+    }
+    
+    public void endSale () {
+        this.sale = new Sale(salesList);
     }
 }

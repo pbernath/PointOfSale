@@ -9,7 +9,7 @@ import view.View;
 public class main {
     
     /**
-     * This is the startup class that start the application
+     * This is the startup class that starts the application
      * @param args 
      */
     public static void main(String[] args){
@@ -17,6 +17,8 @@ public class main {
         HandlerCreator handlerCreator = new HandlerCreator();
         Controller controller = new Controller(handlerCreator);
         View view = new View(controller);
+        
+        view.runFakeExecution();
         
     }
 }
