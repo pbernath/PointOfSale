@@ -16,14 +16,26 @@ public class SalesListDTO {
         this.totalTax = totalTax;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public List<ListItem> getTheItemList () {
         return theItemList;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public double getTotalPrice () {
         return totalPrice;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public double getTotalTax () {
         return totalTax;
     }

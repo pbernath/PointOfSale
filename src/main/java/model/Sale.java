@@ -7,7 +7,6 @@ import integration.AccountingSystemHandler;
 import integration.InventorySystemHandler;
 import integration.PrinterHandler;
 import java.util.List;
-import java.lang.Math;
 
 
 public class Sale {
@@ -29,6 +28,14 @@ public class Sale {
         
     }
     
+    /**
+     * 
+     * @param amountPaid
+     * @param accountingSystemHandler
+     * @param inventorySystemHandler
+     * @param printerHandler
+     * @return 
+     */
     public SaleLogDTO processSale (int amountPaid, AccountingSystemHandler accountingSystemHandler, InventorySystemHandler inventorySystemHandler, PrinterHandler printerHandler) {
         
         this.amountPaid = amountPaid;
@@ -36,6 +43,7 @@ public class Sale {
         constructSaleLogDTO();
         accountingSystemHandler.updateAccounting(saleLogDTO);
         inventorySystemHandler.updateInventory(saleLogDTO);
+        printerHandler.printReceipt(saleLogDTO);
         
         return saleLogDTO;
     }
@@ -46,6 +54,5 @@ public class Sale {
     
     private void calculateChange () {
         change = (int) Math.round(amountPaid - totalPrice);
-                
     }
 }

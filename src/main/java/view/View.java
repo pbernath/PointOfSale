@@ -3,6 +3,10 @@ package view;
 
 import controller.Controller;
 import dto.SaleLogDTO;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+
+
 
 
 public class View {
@@ -12,6 +16,9 @@ public class View {
         this.controller = controller;
     }
     
+    /**
+     * 
+     */
     public void runFakeExecution () {
         controller.startSale();
         System.out.println("A new sale has been started");
@@ -26,6 +33,6 @@ public class View {
         
         int anAmountPaid = 1000;
         SaleLogDTO theLog = controller.processSale(anAmountPaid);
-        System.out.println("Sale is processed, customer paid " + anAmountPaid + " for " + theLog.getTheFinalList().size() + " items, and got a change of " + theLog.getChange());
+        System.out.println("Sale is processed at " + theLog.getTimestamp().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM)) + ", customer paid " + anAmountPaid + " for " + theLog.getTheFinalList().size() + " items, and got a change of " + theLog.getChange() + " back");
     }
 }

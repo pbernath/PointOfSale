@@ -17,22 +17,42 @@ public class HandlerCreator {
         printerHandler = new PrinterHandler();
     }
     
+    /**
+     * 
+     * @return 
+     */
     public AccountingSystemHandler getAccountingSystemHandler() {
         return this.accountingSystemHandler;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public CustomerDatabaseHandler getCustomerDatabaseHandler() {
         return this.customerDatabaseHandler;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public DiscountDatabaseHandler getDiscountDatabaseHandler() {
         return this.discountDatabseHandler;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public InventorySystemHandler getInventorySystemHandler() {
         return this.inventorySystemHandler;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public PrinterHandler getPrinterHandler() {
         return this.printerHandler;
     }

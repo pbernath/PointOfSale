@@ -8,15 +8,21 @@ import java.util.List;
 
 
 public class SalesList {
-    private List<ListItem> theItemList;
+    private final List<ListItem> theItemList;
     private double totalPrice;
     private double totalTax;
     
     public SalesList() {
-        theItemList = new ArrayList<ListItem>();
+        theItemList = new ArrayList<>();
         updatePrice();
     }
     
+    /**
+     * 
+     * @param itemDTO
+     * @param quantity
+     * @return 
+     */
     public SalesListDTO addItem (ItemDTO itemDTO, int quantity) {
         if (itemDTO.getValidity() == true) {
             boolean present = false;
@@ -34,6 +40,10 @@ public class SalesList {
         return getSalesListDTO();
     }
     
+    /**
+     * 
+     * @return 
+     */
     SalesListDTO getSalesListDTO () {
         updatePrice();
         return new SalesListDTO(theItemList, totalPrice, totalTax);

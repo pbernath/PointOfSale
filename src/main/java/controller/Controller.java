@@ -35,10 +35,19 @@ public class Controller {
         this.printerHandler = handlerCreator.getPrinterHandler();
     }
     
+    /**
+     * 
+     */
     public void startSale () {
         this.salesList = new SalesList();
     }
     
+    /**
+     * 
+     * @param itemID
+     * @param quantity
+     * @return 
+     */
     public SalesListDTO scanItem (int itemID, int quantity) {
         ItemDTO itemDTO = inventorySystemHandler.getItem(itemID);
         
@@ -46,10 +55,18 @@ public class Controller {
         
     }
     
+    /**
+     * 
+     */
     public void endSale () {
         this.sale = new Sale(salesList);
     }
     
+    /**
+     * 
+     * @param amountPaid
+     * @return 
+     */
     public SaleLogDTO processSale (int amountPaid) {
         return sale.processSale(amountPaid, accountingSystemHandler, inventorySystemHandler, printerHandler);
     }

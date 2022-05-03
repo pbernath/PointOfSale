@@ -7,6 +7,11 @@ import dto.SaleLogDTO;
 
 public class InventorySystemHandler {
     
+    /**
+     * 
+     * @param itemID
+     * @return 
+     */
     public ItemDTO getItem (int itemID) {
         
         String itemName;
@@ -28,6 +33,10 @@ public class InventorySystemHandler {
         return new ItemDTO(itemID, itemName, itemDescription, itemCategory, price, taxRate, validity);
     }
     
+    /**
+     * 
+     * @param saleLogDTO 
+     */
     public void updateInventory (SaleLogDTO saleLogDTO) {
         // updates inventory
     }

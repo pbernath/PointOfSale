@@ -13,6 +13,10 @@ public class ListItem {
         this.quantity = quantity;
     }
     
+    /**
+     * 
+     * @param quantityToAdd 
+     */
     void addQuantity (int quantityToAdd) {
         this.quantity += quantityToAdd;
     }

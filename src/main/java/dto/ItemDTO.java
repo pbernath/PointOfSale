@@ -23,30 +23,58 @@ public class ItemDTO {
         this.validity = validity;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public int getItemID () {
         return itemID;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public String getItemName () {
         return itemName;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public String getItemDescription () {
         return itemDescription;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public String getItemCategory () {
         return itemCategory;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public double getPrice () {
         return price;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public double getTaxRate () {
         return taxRate;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public boolean getValidity () {
         return validity;
     }
