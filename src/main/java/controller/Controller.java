@@ -54,7 +54,7 @@ public class Controller {
      * @param quantity The amount of items with the same itemID to be added at the same time
      * @return 
      */
-    public SalesListDTO scanItem (int itemID, int quantity) {
+    public SalesListDTO scanItem (int itemID, int quantity) throws InvalidItemException{
         ItemDTO itemDTO = inventorySystemHandler.getItem(itemID);
         
         return salesList.addItem(itemDTO, quantity);

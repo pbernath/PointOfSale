@@ -42,5 +42,8 @@ public class InventorySystemHandler {
      */
     public void updateInventory (SaleLogDTO saleLogDTO) {
         // updates inventory status
+        
+        // would not throw exception for no contact with database, but store the saleLogDTO to send whenever contact is reestablished in some reoccuring function
+        
     }
 }

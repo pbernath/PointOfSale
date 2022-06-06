@@ -2,6 +2,7 @@
 package view;
 
 import controller.Controller;
+import controller.InvalidItemException;
 import dto.SaleLogDTO;
 import java.time.format.*;
 
@@ -25,7 +26,7 @@ public class View {
     /**
      * Runs a fictitious execution of the functions in controller that the view would generally call and prints a message to System.out after each call
      */
-    public void runFakeExecution () {
+    public void runFakeExecution () throws InvalidItemException{
         controller.startSale();
         System.out.println("A new sale has been started");
         
