@@ -6,6 +6,7 @@ import dto.SalesListDTO;
 import integration.AccountingSystemHandler;
 import integration.InventorySystemHandler;
 import integration.PrinterHandler;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +20,8 @@ public class Sale {
     double totalTax;
     SalesListDTO salesListDTO;
     SaleLogDTO saleLogDTO;
+    
+    private List<SaleObserver> saleObservers = new ArrayList<>();
     
     /**
      * Initializes the Sale, fetches information from the SalesList and resets variables
@@ -44,6 +47,7 @@ public class Sale {
         constructSaleLogDTO();
         updateExternalSystems(saleLogDTO, accountingSystemHandler, inventorySystemHandler);
         printReceipt(saleLogDTO, printerHandler);
+        notifyObservers(saleLogDTO);
         return saleLogDTO;
     }
     
@@ -78,5 +82,21 @@ public class Sale {
     
     private void printReceipt (SaleLogDTO saleLogDTO, PrinterHandler printerHandler) {
         printerHandler.printReceipt(saleLogDTO);
+    }
+    
+    private void notifyObservers (SaleLogDTO saleLogDTO) {
+        for (SaleObserver obs : saleObservers) {
+            obs.newSale(saleLogDTO);
+        }
+    }
+    
+    /**
+     * 
+     * @param obs 
+     */
+    public void addObservers (ArrayList<SaleObserver> obs) {
+        for (SaleObserver newObs: obs) {
+            saleObservers.add(newObs);
+        }
     }
 }

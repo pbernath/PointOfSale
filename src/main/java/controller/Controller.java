@@ -14,6 +14,11 @@ import model.Sale;
 import dto.ItemDTO;
 import dto.SaleLogDTO;
 import dto.SalesListDTO;
+import exceptions.DatabaseConnectionException;
+import exceptions.ItemInvalidException;
+import java.util.ArrayList;
+import java.util.List;
+import model.SaleObserver;
 
 /**
  * The programs only controller and is only receiving calls from the view
@@ -27,6 +32,8 @@ public class Controller {
     private final PrinterHandler printerHandler;
     private SalesList salesList;
     private Sale sale;
+    
+    private ArrayList<SaleObserver> saleObservers = new ArrayList<>();
     
     /**
      * Initializes the programs only controller that is used to relay calls from the view to the rest of the system
@@ -53,8 +60,9 @@ public class Controller {
      * @param itemID The itemID scanned or entered manually
      * @param quantity The amount of items with the same itemID to be added at the same time
      * @return 
+     * @throws exceptions.ItemInvalidException Throws exception if item is not verified
      */
-    public SalesListDTO scanItem (int itemID, int quantity) {
+    public SalesListDTO scanItem (int itemID, int quantity) throws ItemInvalidException, DatabaseConnectionException{
         ItemDTO itemDTO = inventorySystemHandler.getItem(itemID);
         
         return salesList.addItem(itemDTO, quantity);
@@ -66,6 +74,7 @@ public class Controller {
      */
     public void endSale () {
         this.sale = new Sale(salesList);
+        this.sale.addObservers(saleObservers);
     }
     
     /**
@@ -75,5 +84,9 @@ public class Controller {
      */
     public SaleLogDTO processSale (int amountPaid) {
         return sale.processSale(amountPaid, accountingSystemHandler, inventorySystemHandler, printerHandler);
+    }
+    
+    public void addSaleObserver (SaleObserver obs) {
+        saleObservers.add(obs);
     }
 }

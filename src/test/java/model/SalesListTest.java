@@ -52,7 +52,7 @@ public class SalesListTest {
         this.testItem = null;
         this.theItemList = null;
     }
-
+    
     /**
      * Test of addItem method, of class SalesList.
      */
@@ -81,7 +81,7 @@ public class SalesListTest {
         result = instance.addItem(itemDTO, quantity);
         assertEquals(expResult, result.getTheItemList().get(0).getItemQuantity(), "Quantity of item was not increased");
     }
-
+    
     /**
      * Test if item is valid
      * 

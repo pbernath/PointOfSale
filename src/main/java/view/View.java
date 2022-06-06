@@ -3,7 +3,12 @@ package view;
 
 import controller.Controller;
 import dto.SaleLogDTO;
+import exceptions.DatabaseConnectionException;
+import exceptions.ItemInvalidException;
+import java.time.LocalDateTime;
 import java.time.format.*;
+
+
 
 
 
@@ -20,6 +25,8 @@ public class View {
      */
     public View (Controller controller) {
         this.controller = controller;
+        controller.addSaleObserver(new TotalRevenueView());
+        controller.addSaleObserver(new TotalRevenueFileOutput());
     }
     
     /**
@@ -27,18 +34,24 @@ public class View {
      */
     public void runFakeExecution () {
         controller.startSale();
-        System.out.println("A new sale has been started");
+        System.out.println("To user: A new sale has been started");
         
-        int anItemID = 1;
+        int anItemID = 12;
         int aItemQuantity = 1;
-        controller.scanItem(anItemID, aItemQuantity);
-        System.out.println("Scanned itemID " + anItemID + " with quantity " + aItemQuantity);
-        
+        System.out.println("To user: Scanned itemID " + anItemID + " with quantity " + aItemQuantity);
+        try {
+            controller.scanItem(anItemID, aItemQuantity);
+        } catch (ItemInvalidException ex) {
+            System.out.println("To user: Item scanned not found in the inventory system! Try Again!");
+        } catch (DatabaseConnectionException ex) {
+            System.out.println("To user: Could not scan item. Try Again!");
+            System.out.println("Developer log: Connection to inventory system failed at " + LocalDateTime.now() + " and through IP-address '8.8.8.8'.");
+        }
         controller.endSale();
-        System.out.println("The current sale is ending");
+        System.out.println("To user: The current sale is ending");
         
         int anAmountPaid = 1000;
         SaleLogDTO theLog = controller.processSale(anAmountPaid);
-        System.out.println("Sale is processed at " + theLog.getTimestamp().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM)) + ", customer paid " + anAmountPaid + " for " + theLog.getTheFinalList().size() + " items, and got a change of " + theLog.getChange() + " back");
+        System.out.println("To user: Sale is processed at " + theLog.getTimestamp().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM)) + ", customer paid " + anAmountPaid + " for " + theLog.getTheFinalList().size() + " items, and got a change of " + theLog.getChange() + " back");
     }
 }

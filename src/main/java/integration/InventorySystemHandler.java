@@ -1,6 +1,7 @@
 
 package integration;
 
+import exceptions.DatabaseConnectionException;
 import dto.ItemDTO;
 import dto.SaleLogDTO;
 
@@ -13,8 +14,13 @@ public class InventorySystemHandler {
      * Fetches all information available about an item based on the itemID, and packages that as a DTO in return
      * @param itemID The identification number of the item to be fetched from the external database
      * @return A DTO containing all relevant information regarding the itemID sent to be fetched
+     * @throws exceptions.DatabaseConnectionException
      */
-    public ItemDTO getItem (int itemID) {
+    public ItemDTO getItem (int itemID) throws DatabaseConnectionException {
+        
+        if (itemID == 69) {
+            throw new DatabaseConnectionException();
+        }
         
         String itemName;
         String itemDescription;

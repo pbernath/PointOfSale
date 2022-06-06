@@ -1,6 +1,8 @@
 
 package integration;
 
+
+
 /**
  * The handlerCreator is responsible for creating and administering the handler that handle calls to databases, external systems or external I/O (such as the printer), it also contains the references to those handlers.
  */
@@ -10,11 +12,12 @@ public class HandlerCreator {
     private final DiscountDatabaseHandler discountDatabseHandler;
     private final InventorySystemHandler inventorySystemHandler;
     private final PrinterHandler printerHandler;
+
     
     /**
      * Initializes the handlerCreator that also creates classes for the external systems it needs to reference
      */
-    public HandlerCreator(){
+    public HandlerCreator() {
         accountingSystemHandler = new AccountingSystemHandler();
         customerDatabaseHandler = new CustomerDatabaseHandler();
         discountDatabseHandler = new DiscountDatabaseHandler();
@@ -61,5 +64,4 @@ public class HandlerCreator {
     public PrinterHandler getPrinterHandler() {
         return this.printerHandler;
     }
-    
 }

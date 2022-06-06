@@ -3,6 +3,7 @@ package model;
 
 import dto.ItemDTO;
 import dto.SalesListDTO;
+import exceptions.ItemInvalidException;
 import java.util.*;
 
 /**
@@ -26,11 +27,14 @@ public class SalesList {
      * @param itemDTO The item data transfer object to be added to the list.
      * @param quantity The amount of the item to be added to the list
      * @return A new iterated SalesListDTO for keeping a running tally
+     * @throws exceptions.ItemInvalidException Throws exception if item is not valid
      */
-    public SalesListDTO addItem (ItemDTO itemDTO, int quantity) {
-        if (itemDTO.getValidity()) {
-            addItemToList(itemDTO, quantity);
+    public SalesListDTO addItem (ItemDTO itemDTO, int quantity) throws ItemInvalidException{
+        if (itemDTO.getValidity() == false) {
+            throw new ItemInvalidException (itemDTO);
         }
+        
+        addItemToList(itemDTO, quantity);
         return getSalesListDTO();
     }
     
