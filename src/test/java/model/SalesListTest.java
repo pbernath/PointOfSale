@@ -1,7 +1,6 @@
 
 package model;
 
-import controller.InvalidItemException;
 import dto.ItemDTO;
 import dto.SalesListDTO;
 import java.util.ArrayList;
@@ -58,7 +57,7 @@ public class SalesListTest {
      * Test of addItem method, of class SalesList.
      */
     @Test
-    public void testAddItem() throws InvalidItemException {
+    public void testAddItem() {
         System.out.println("addItem");
         ItemDTO itemDTO = this.testItem;
         int quantity = 1;
@@ -72,7 +71,7 @@ public class SalesListTest {
      * 
      */
     @Test
-    public void testAddItemQuantity() throws InvalidItemException{
+    public void testAddItemQuantity() {
         System.out.println("addItem");
         ItemDTO itemDTO = this.testItem;
         int quantity = 1;

@@ -1,7 +1,6 @@
 
 package model;
 
-import controller.InvalidItemException;
 import dto.ItemDTO;
 import dto.SalesListDTO;
 import java.util.*;
@@ -28,13 +27,9 @@ public class SalesList {
      * @param quantity The amount of the item to be added to the list
      * @return A new iterated SalesListDTO for keeping a running tally
      */
-    public SalesListDTO addItem (ItemDTO itemDTO, int quantity) throws InvalidItemException {
-        try {
-            if (itemDTO.getValidity()) {
-                addItemToList(itemDTO, quantity);
-            } else {
-            throw new InvalidItemException (itemDTO);}
-        } catch (InvalidItemException e){
+    public SalesListDTO addItem (ItemDTO itemDTO, int quantity) {
+        if (itemDTO.getValidity()) {
+            addItemToList(itemDTO, quantity);
         }
         return getSalesListDTO();
     }

@@ -51,7 +51,7 @@ public class ControllerTest {
      * Test of scanItem method, of class Controller.
      */
     @Test
-    public void testScanItem() throws InvalidItemException {
+    public void testScanItem() {
         System.out.println("scanItem");
         int itemID = 0;
         int quantity = 0;

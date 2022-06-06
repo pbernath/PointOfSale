@@ -2,7 +2,6 @@
 package startup;
 
 import controller.Controller;
-import controller.InvalidItemException;
 import integration.HandlerCreator;
 import view.View;
 
@@ -15,7 +14,7 @@ public class main {
      * This is the function that starts the application
      * @param args 
      */
-    public static void main (String[] args) throws InvalidItemException {
+    public static void main (String[] args) {
         
         HandlerCreator handlerCreator = new HandlerCreator();
         Controller controller = new Controller(handlerCreator);
