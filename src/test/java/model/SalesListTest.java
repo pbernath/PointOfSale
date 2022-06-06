@@ -79,7 +79,7 @@ public class SalesListTest {
         int expResult = 2;
         SalesListDTO result = instance.addItem(itemDTO, quantity);
         result = instance.addItem(itemDTO, quantity);
-        assertEquals(expResult, result.getTheItemList().get(0).getItemQuantity(), "Item was not added to the list");
+        assertEquals(expResult, result.getTheItemList().get(0).getItemQuantity(), "Quantity of item was not increased");
     }
 
     /**
