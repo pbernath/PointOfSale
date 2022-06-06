@@ -27,11 +27,19 @@ public class ListItem {
     void addQuantity (int quantityToAdd) {
         this.quantity += quantityToAdd;
     }
-
+    
+    /**
+     * Getter for the itemDTO in this ListItem.
+     * @return Returns the itemDTO of this ListItem
+     */
     public ItemDTO getItemDTO() {
         return this.itemDTO;
     }
     
+    /**
+     * Getter for the quantity in this ListItem
+     * @return Returns the quantity of this ListItem
+     */
     public int getItemQuantity() {
         return this.quantity;
     }
