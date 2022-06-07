@@ -3,6 +3,8 @@ package model;
 
 import dto.ItemDTO;
 import dto.SalesListDTO;
+import exceptions.ItemInvalidException;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
@@ -54,10 +56,47 @@ public class SalesListTest {
     }
     
     /**
-     * Test of addItem method, of class SalesList.
+     * Test if exception is thrown addItem when only 1 item is being added, of class SalesList.
      */
     @Test
-    public void testAddItem() {
+    public void testItemInvalidExceptionWithAddItem() {
+        System.out.println("addItem");
+        ItemDTO itemDTO = this.otherTestItem;
+        int quantity = 1;
+        SalesList instance = new SalesList();
+        String expResult = "To user: Item scanned not found in the inventory system! Try Again!";
+        try{
+            SalesListDTO result = instance.addItem(itemDTO, quantity);
+            fail("exception wasnt thrown");
+        } catch(ItemInvalidException e){
+            assertEquals(e.getMessage(), expResult);
+        }
+    }
+    
+    /**
+     * Test if exception is thrown for addItem when 2 items is being added.
+     */
+    @Test
+    public void testItemInvalidExceptionWithAddItemQuantity() {
+        System.out.println("addItem");
+        ItemDTO itemDTO = this.otherTestItem;
+        int quantity = 1;
+        SalesList instance = new SalesList();
+        String expResult = "To user: Item scanned not found in the inventory system! Try Again!";
+        try{
+            SalesListDTO result = instance.addItem(itemDTO, quantity);
+            result = instance.addItem(itemDTO, quantity);
+            fail("exception wasnt thrown");
+        } catch(ItemInvalidException e){
+            assertEquals(e.getMessage(), expResult);
+        }
+    }
+      /**
+     * Test of addItem method, of class SalesList.
+     * @throws ItemInvalidException
+     */
+    @Test
+    public void testAddItem() throws ItemInvalidException {
         System.out.println("addItem");
         ItemDTO itemDTO = this.testItem;
         int quantity = 1;
@@ -68,10 +107,12 @@ public class SalesListTest {
     }
     
     /**
+     * Tests if the quantity of the item increases.
+     * @throws ItemInvalidException
      * 
      */
     @Test
-    public void testAddItemQuantity() {
+    public void testAddItemQuantity() throws ItemInvalidException {
         System.out.println("addItem");
         ItemDTO itemDTO = this.testItem;
         int quantity = 1;

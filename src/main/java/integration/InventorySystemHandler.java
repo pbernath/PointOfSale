@@ -14,7 +14,7 @@ public class InventorySystemHandler {
      * Fetches all information available about an item based on the itemID, and packages that as a DTO in return
      * @param itemID The identification number of the item to be fetched from the external database
      * @return A DTO containing all relevant information regarding the itemID sent to be fetched
-     * @throws exceptions.DatabaseConnectionException
+     * @throws exceptions.DatabaseConnectionException Can throw this exception if the connection to the Inventory System is faulty. This is simulated by using the itemID 69.
      */
     public ItemDTO getItem (int itemID) throws DatabaseConnectionException {
         

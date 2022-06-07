@@ -91,8 +91,8 @@ public class Sale {
     }
     
     /**
-     * 
-     * @param obs 
+     * This function is used to add new observers to be notified with changes relevant to them.
+     * @param obs This is the list of SaleObserverd that is to be added to the list of observers in this
      */
     public void addObservers (ArrayList<SaleObserver> obs) {
         for (SaleObserver newObs: obs) {

@@ -17,7 +17,6 @@ import dto.SalesListDTO;
 import exceptions.DatabaseConnectionException;
 import exceptions.ItemInvalidException;
 import java.util.ArrayList;
-import java.util.List;
 import model.SaleObserver;
 
 /**
@@ -59,7 +58,7 @@ public class Controller {
      * Adds the specified amount of items to the sale initialized earlier
      * @param itemID The itemID scanned or entered manually
      * @param quantity The amount of items with the same itemID to be added at the same time
-     * @return 
+     * @return The SaleListDTO containing all items added to the SaleList thus far
      * @throws exceptions.ItemInvalidException Throws exception if item is not verified
      */
     public SalesListDTO scanItem (int itemID, int quantity) throws ItemInvalidException, DatabaseConnectionException{
@@ -80,12 +79,16 @@ public class Controller {
     /**
      * Finalizes and finished the sale after payment has been received (from the customer). This includes updating inventory and accounting as well as printing a receipt. Must be called after endSale that finalizes the list of items to be sold.
      * @param amountPaid The amount paid in cash to the cashier
-     * @return 
+     * @return The SaleLogDTO containing all relevant information regarding the Sale
      */
     public SaleLogDTO processSale (int amountPaid) {
         return sale.processSale(amountPaid, accountingSystemHandler, inventorySystemHandler, printerHandler);
     }
     
+    /**
+     * This function is called whenever a new SaleObserver needs to be notified of new sales.
+     * @param obs The SaleObserver to be added
+     */
     public void addSaleObserver (SaleObserver obs) {
         saleObservers.add(obs);
     }

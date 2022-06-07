@@ -5,7 +5,6 @@ import controller.Controller;
 import dto.SaleLogDTO;
 import exceptions.DatabaseConnectionException;
 import exceptions.ItemInvalidException;
-import java.time.LocalDateTime;
 import java.time.format.*;
 
 
@@ -14,7 +13,8 @@ import java.time.format.*;
 
 
 /**
- * This class represents the part of the program that the user (a cashier) would interact with
+ * This class represents the part of the program that the user (a cashier) would interact with,
+ * as well as all other views, like a monitor or writing to a file.
  */
 public class View {
     private final Controller controller;
@@ -42,10 +42,10 @@ public class View {
         try {
             controller.scanItem(anItemID, aItemQuantity);
         } catch (ItemInvalidException ex) {
-            System.out.println("To user: Item scanned not found in the inventory system! Try Again!");
+            System.out.println( ex.getMessage());
         } catch (DatabaseConnectionException ex) {
             System.out.println("To user: Could not scan item. Try Again!");
-            System.out.println("Developer log: Connection to inventory system failed at " + LocalDateTime.now() + " and through IP-address '8.8.8.8'.");
+            System.out.println( ex.getMessage());
         }
         controller.endSale();
         System.out.println("To user: The current sale is ending");

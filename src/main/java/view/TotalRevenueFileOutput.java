@@ -10,8 +10,7 @@ import model.SaleObserver;
 
 
 /**
- *
- * @author Peter
+ * This is an observer class that logs to a file the running tally of all sales and their total revenue thus far. It implements the SaleObserver in the model
  */
 public class TotalRevenueFileOutput implements SaleObserver{
     int totalNumberOfSales = 0;
@@ -20,7 +19,9 @@ public class TotalRevenueFileOutput implements SaleObserver{
     private static final String LOG_FILE_NAME = "log.txt";
     private PrintWriter logFile;
     
-    
+    /**
+     * This is the constructor for the class. It is responsible for creating the FileWriter to write to a file that logs the running tally after each sale
+     */
     public TotalRevenueFileOutput () {
         try {
             logFile = new PrintWriter(new FileWriter(LOG_FILE_NAME, true), true);
@@ -29,7 +30,10 @@ public class TotalRevenueFileOutput implements SaleObserver{
         }
     }
     
-    
+    /**
+     * This function overrides the newSale in the observer class and controls the adding of the tally
+     * @param saleLogDTO This is the saleLogDTO created after the sale has been processed and completed.
+     */
     @Override
     public void newSale (SaleLogDTO saleLogDTO) {
         addNewSale (saleLogDTO);
